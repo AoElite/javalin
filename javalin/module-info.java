@@ -2,6 +2,7 @@ module io.javalin {
 
     exports io.javalin;
     exports io.javalin.apibuilder;
+    exports io.javalin.pathbuilder;
     exports io.javalin.compression;
     exports io.javalin.config;
     exports io.javalin.event;

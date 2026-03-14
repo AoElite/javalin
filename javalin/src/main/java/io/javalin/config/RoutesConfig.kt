@@ -6,6 +6,7 @@ import io.javalin.apibuilder.ApiBuilder
 import io.javalin.apibuilder.EndpointGroup
 import io.javalin.http.ExceptionHandler
 import io.javalin.http.Handler
+import io.javalin.pathbuilder.PathBuilder
 import io.javalin.router.Endpoint
 import io.javalin.router.JavalinDefaultRoutingApi
 import io.javalin.security.RouteRole
@@ -57,6 +58,16 @@ class RoutesConfig(internal val cfg: JavalinState) : JavalinDefaultRoutingApi {
         } finally {
             ApiBuilder.clearStaticJavalin()
         }
+    }
+
+    /**
+     * Adds routes using the builder-based API endpoint DSL.
+     *
+     * @param endpoints consumer that configures the endpoint builder
+     * @return this RoutesConfig instance for method chaining
+     */
+    fun pathBuilder(endpoints: Consumer<PathBuilder>): RoutesConfig = apply {
+        endpoints.accept(PathBuilder.root(this))
     }
 
 }
